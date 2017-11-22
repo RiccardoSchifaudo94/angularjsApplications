@@ -1,0 +1,38 @@
+<html>
+<head>
+	<style type="text/css">	
+		*{
+			padding: 0px;
+			margin: 0px;
+			font-family: 'Helvetica',sans-serif;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/ng-tags-input/ng-tags-input.bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="plugins/ng-tags-input/ng-tags-input.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Module apps</h1>
+	</div>	
+	<div ng-app="modulesApp" ng-controller="TagsDemoController as ctrl">
+		<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						{{ctrl.helloMessage}}
+						<tags-input ng-model="ctrl.tags"></tags-input>
+					</div>
+				</div>
+		
+		</div>
+	</div>	
+</body>
+<script type="text/javascript" src="../angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="myHelloModule.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="plugins/ng-tags-input/ng-tags-input.js"></script>
+
+</html>

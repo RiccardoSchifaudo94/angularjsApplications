@@ -1,0 +1,17 @@
+<html>
+<head>
+	<style type="text/css">
+	</style>
+</head>
+<body ng-app="nestedAppController">
+	<div ng-controller="Ctrl1 as C1">
+		{{C1.test}}
+			<div ng-controller="Ctrl2 as C2">
+				{{C2.test}}
+			</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="../angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>

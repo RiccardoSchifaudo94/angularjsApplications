@@ -1,0 +1,82 @@
+<html ng-app="cloackApp">
+<head>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="../angular.min.js"></script>
+</head>
+<body>
+	<div ng-controller="TimeCtrl" ng-load="autoUpdateTimeZone()">
+		<h1>Hello Angular</h1>
+		<p ng-if="hourOfDay < 10">Good morning</p>
+		<p ng-if="hourOfDay > 10 || hourOfDay <17">Good afternoon</p>
+		<p ng-if="hourOfDay > 17">Good eveninging</p>
+		Please insert your name:
+		<input type="text" ng-model="userName"></input>
+		<br/>
+		Your name is {{userName}}
+		<br/>
+		<br/>
+		<span>The hour of start {{currentTime}}</span>
+		<br/>
+		<p>The current hour is {{timeString}}</p>
+		<button ng-click="updateTime()" ng-style="styleBtn">Update</button>
+		<button>Ciao</button>
+		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="red">Red</input>
+		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="blue">Blue</input>
+		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="green">Green</input>
+		<p>You have selected {{radioValue}}</p>
+		<p ng-click="updateTime()">Current time of today : {{timeString}}</p>
+	</div>	
+<script type="text/javascript">
+	var module = angular.module("cloackApp",[]);
+		module.controller("TimeCtrl",Time);
+		function Time($scope,$interval){
+			
+			$scope.currentTime = new Date().toTimeString();
+			$scope.timeString = "Inizitializing cloackApp!";
+			$scope.updateTime = function(){
+					$interval(function(){
+											$scope.timeString = new Date().toTimeString();
+							},1000);									
+			}
+			
+		
+
+			$scope.changeColor = function(){
+					if($scope.radioValue=="red")
+						$scope.styleBtn = { 
+								"color" : "white",
+								"background-color":"red",
+								"border":"none", 
+								"padding":"8px 10px",
+								"font-size":"14px",
+								"text-transform":"uppercase",
+								"font-weight":"400"
+						}
+					if($scope.radioValue=="blue")
+						$scope.styleBtn = { 
+								"color" : "white",
+								"background-color":"blue",
+								"border":"none", 
+								"padding":"8px 10px",
+								"font-size":"14px",
+								"text-transform":"uppercase",
+								"font-weight":"400"
+						}
+					if($scope.radioValue=="green")
+						$scope.styleBtn = { 
+								"color" : "white",
+								"background-color":"green",
+								"border":"none", 
+								"padding":"8px 10px",
+								"font-size":"14px",
+								"text-transform":"uppercase",
+								"font-weight":"400"
+						}
+			}
+		
+
+		}
+</script>
+</body>
+</html>

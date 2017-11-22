@@ -1,0 +1,113 @@
+<html>
+<head>
+	<style type="text/css">	
+		*{
+			padding: 0px;
+			margin: 0px;
+			font-family: 'Helvetica',sans-serif;
+		}
+		.jumbotron{
+			margin: 10px auto;
+			text-align:center;
+		}
+		.row{padding:0 10px;}
+		
+		input[type=checkbox], 
+		input[type=radio] {
+   			height: 20px;
+   			width: 20px;
+   			margin-right:5px;
+   		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-app="moreDirectiveApp">
+	<div ng-controller="moreDirectiveController as ctrl">
+		<div class="container">
+				<h1>More Directive</h1>
+				<input type="checkbox" ng-model="ctrl.checked">Test</input> 
+				<hr>
+				<label>Check one or more checkbox</label>
+				<br/>
+				<input type="checkbox" ng-model="ctrl.hotel_checkbox">Hotel</input> 
+				<input type="checkbox" ng-model="ctrl.filght_checkbox">Flight</input> 
+				<input type="checkbox" ng-model="ctrl.food_checkbox">Food</input> 
+				<hr>
+				<p ng-if="ctrl.checked">Some context</p>
+				<p ng-show="ctrl.checked">Some context</p>
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<div class="jumbotron" height="300" ng-if="ctrl.hotel_checkbox">
+							<i class="fa fa-hotel"></i>
+							<h3>Hotel</h3>
+							<button class="btn btn-info">Book</button>
+						</div>	
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12 ">
+						<div class="jumbotron" height="300" ng-if="ctrl.filght_checkbox">
+							<i class="fa fa-plane"></i>
+							<h3>Flight</h3>
+							<button class="btn btn-info" ng-hide="ctrl.status_btn_clicked" ng-click="ctrl.btnClicked()">Book</button>
+							<button class="btn btn-primary" ng-show="ctrl.status_btn_clicked" ng-click="ctrl.btnClicked()">Unbook</button>
+						</div>	
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12 ">
+						<div class="jumbotron" height="300" ng-if="ctrl.food_checkbox">
+							<i class="fa fa-cutlery"></i>
+							<h3>Food</h3>
+							<button class="btn btn-info">Book</button>
+						</div>	
+					</div>
+				</div>
+				<div class="row" ng-show="ctrl.status_btn_clicked">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-primary">
+						    <div class="panel-heading">List Flights</div>
+						    <div class="panel-body">
+					    		<table class="table table-responsive table-condensed table-striped">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Code Flight</th>
+											<th>FROM</th>
+											<th>TO</th>
+											<th>Start</th>
+											<th>Arrive</th>
+											<th>Flight Company</th>	
+											<th>Action<th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="flight in ctrl.myList">
+											<td>	
+												{{$index}} 
+												<div ng-if="$first" style="color:red">First</div>
+												<div ng-if="$last" style="color:green">Last</div>
+												<div ng-if="$middle" style="color:orange">Middle</div>
+												<div ng-if="$odd" style="color:blue">Odds</div>
+											</td>
+											<td>{{flight.code_flight}}</td>	
+											<td>{{flight.from}}</td>
+											<td>{{flight.to}}</td>
+											<td>{{flight.start}}</td>
+											<td>{{flight.arrive}}</td>
+											<td>{{flight.company}}</td>
+											<td><button class="btn btn-success">Book</button></td>
+										</tr>
+									</tbody>
+								</table>
+						    </div>
+						 </div>
+					</div>
+				</div>
+		</div>
+	</div>	
+
+</body>
+<script type="text/javascript" src="../angular.min.js"></script>
+<script type="text/javascript" src=""></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>

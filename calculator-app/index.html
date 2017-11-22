@@ -1,0 +1,72 @@
+<html>
+<head>
+	<style type="text/css">	
+		*{
+			font-family:Helvetica,sans-serif;
+		}
+		h1{
+			font-weight:300;
+			margin-left:10px;
+		}
+		input{
+			height:40px;
+			border:1px solid;
+			width:200px;
+			box-shadow:inset 3px 1px 15px 0px rgba(180,180,180,0.4);
+  			background-color: #fff;
+			margin-right:10px;
+			margin-left:10px;
+		}
+		button{
+			height:40px;
+			width:40px;
+			color: #000;
+		}
+		button,input{
+			font-size:20px;
+		}
+		p{
+			margin-left:10px;
+		}
+		span{
+			    background-color: #ffffff;
+			    border: 1px solid #dcd3d3;
+			    min-width: 100px;
+			    width: auto;
+			    font-family: Helvetica;
+			    font-size: 20px;
+			    font-weight: 300;
+			    padding: 6px 20px;
+			    color:#000;
+		}
+	</style>
+</head>
+<body ng-app="calculatorApp">
+	<div ng-controller="CalcCtrl as ctrl">
+		<h1>Calculator App</h1>
+		<input type="text" ng-model="ctrl.input1">
+		<span ng-bind="ctrl.selectedOperation"></span>
+		<input type="text" ng-model="ctrl.input2" class="secondInput">
+		<button ng-click="ctrl.computeResult()">=</button>
+		<span ng-bind="ctrl.result"></span>
+	
+		<div>
+			<p>
+				<button ng-click="ctrl.buttonClicked('+');">+</button>
+				<button ng-click="ctrl.buttonClicked('-');">-</button>
+				<button ng-click="ctrl.buttonClicked('x');">x</button>
+				<button ng-click="ctrl.buttonClicked('/');">/</button>
+			</p>
+			<p>	
+				<button ng-click="ctrl.buttonClicked('%');">%</button>
+				<button ng-click="ctrl.buttonClicked('!');">!</button>
+				<button ng-click="ctrl.buttonClicked('1/x');">1/x</button>
+				<button ng-click="ctrl.buttonClicked('^2');">^2</button>	
+			</p>	
+		</div>
+	</div>	
+
+</body>
+<script type="text/javascript" src="../angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>
