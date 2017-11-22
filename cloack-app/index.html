@@ -1,82 +1,91 @@
-<html ng-app="cloackApp">
+<html>
 <head>
-<style type="text/css">
-</style>
-<script type="text/javascript" src="../angular.min.js"></script>
-</head>
-<body>
-	<div ng-controller="TimeCtrl" ng-load="autoUpdateTimeZone()">
-		<h1>Hello Angular</h1>
-		<p ng-if="hourOfDay < 10">Good morning</p>
-		<p ng-if="hourOfDay > 10 || hourOfDay <17">Good afternoon</p>
-		<p ng-if="hourOfDay > 17">Good eveninging</p>
-		Please insert your name:
-		<input type="text" ng-model="userName"></input>
-		<br/>
-		Your name is {{userName}}
-		<br/>
-		<br/>
-		<span>The hour of start {{currentTime}}</span>
-		<br/>
-		<p>The current hour is {{timeString}}</p>
-		<button ng-click="updateTime()" ng-style="styleBtn">Update</button>
-		<button>Ciao</button>
-		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="red">Red</input>
-		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="blue">Blue</input>
-		<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="green">Green</input>
-		<p>You have selected {{radioValue}}</p>
-		<p ng-click="updateTime()">Current time of today : {{timeString}}</p>
-	</div>	
-<script type="text/javascript">
-	var module = angular.module("cloackApp",[]);
-		module.controller("TimeCtrl",Time);
-		function Time($scope,$interval){
-			
-			$scope.currentTime = new Date().toTimeString();
-			$scope.timeString = "Inizitializing cloackApp!";
-			$scope.updateTime = function(){
-					$interval(function(){
-											$scope.timeString = new Date().toTimeString();
-							},1000);									
-			}
-			
-		
-
-			$scope.changeColor = function(){
-					if($scope.radioValue=="red")
-						$scope.styleBtn = { 
-								"color" : "white",
-								"background-color":"red",
-								"border":"none", 
-								"padding":"8px 10px",
-								"font-size":"14px",
-								"text-transform":"uppercase",
-								"font-weight":"400"
-						}
-					if($scope.radioValue=="blue")
-						$scope.styleBtn = { 
-								"color" : "white",
-								"background-color":"blue",
-								"border":"none", 
-								"padding":"8px 10px",
-								"font-size":"14px",
-								"text-transform":"uppercase",
-								"font-weight":"400"
-						}
-					if($scope.radioValue=="green")
-						$scope.styleBtn = { 
-								"color" : "white",
-								"background-color":"green",
-								"border":"none", 
-								"padding":"8px 10px",
-								"font-size":"14px",
-								"text-transform":"uppercase",
-								"font-weight":"400"
-						}
-			}
-		
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/ng-tags-input/ng-tags-input.bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="plugins/ng-tags-input/ng-tags-input.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">	
+		h1{
+			text-transform:uppercase;
 		}
-</script>
+		.time_viewer{
+			font-size:36px;
+			font-family:'Helvetica',sans-serif;
+			font-weight:200;
+			border: 1px solid #3F51B5;
+			padding:5px 10px;
+		}
+	</style>
+</head>
+<body ng-app="cloackApp">
+	<div class="header">
+		<div class="container">
+			<h1><i class="fa fa-history"></i> CLOACK APP </h1>
+		</div>	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-12"></div>
+			<div class="col-md-4 col-sm-4 col-xs-12 text-center">
+				<div ng-controller="TimeCtrl" ng-load="autoUpdateTimeZone()">
+					<!--<h1>Hello Angular</h1>-->
+					<h1 ng-if="hourOfDay < 10">Good morning</h1>
+					<h1 ng-if="hourOfDay > 10 || hourOfDay < 17">Good afternoon</h1>
+					<h1 ng-if="hourOfDay > 17">Good eveninging</h1>
+					<!--Please insert your name:
+					<input type="text" ng-model="userName"></input>
+					<br/>
+					Your name is {{userName}}
+					<br/>
+					<br/>-->
+					<h2 class="text-center">The hour of start</h2>
+					<p  class="text-center">{{currentTime}}</p>
+					<br/>
+					<button ng-click="updateTime()" ng-style="styleBtn" class="add">
+						<i class="fa fa-history"></i> Start Cloack Timer
+					</button>
+					<h2>The current hour is</h2> 
+					<h3 class="time_viewer">{{timeString}}</h3>
+					<!--<button>Ciao</button>
+					<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="red">Red</input>
+					<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="blue">Blue</input>
+					<input type="radio" ng-model="radioValue" ng-click="changeColor()" value="green">Green</input>
+					<p>You have selected {{radioValue}}</p>
+					<p ng-click="updateTime()">Current time of today : {{timeString}}</p>-->
+				</div>	
+			</div>	
+			<div class="col-md-4 col-sm-4 col-xs-12"></div>
+		</div>	
+	</div>	
+	<div class="footer">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<h1><i class="fa fa-check-square-o"></i> Cloack App</h1>
+					<hr>
+					<p>
+						Cloack App is a webtool which let you<br/> see the current time
+					</p>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<h4>Social</h4>
+					<p class="social_block">
+						<i class="fa fa-facebook"></i>
+						<i class="fa fa-linkedin"></i>
+						<i class="fa fa-pinterest"></i>
+						<i class="fa fa-tumblr"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>	
 </body>
+<script type="text/javascript" src="../angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="plugins/ng-tags-input/ng-tags-input.js"></script>
 </html>
