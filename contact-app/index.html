@@ -8,23 +8,34 @@
 	<link rel="stylesheet" type="text/css" href="plugins/ng-tags-input/ng-tags-input.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<style type="text/css">	
-		
+		.register_contact{
+			height:300px;
+			overflow-y:scroll;
+			border:1px solid #3f51b5;
+			padding:10px 5px;
+		}
+		.media{
+			margin-top:0px;
+		}
 	</style>
 </head>
-<body>
-	<div class="header">
+<body ng-app="todoApp">
+	<div class="header" ng-controller="HeaderController as head">
 		<div class="container">
-			<h1><i class="fa fa-check-square-o"></i> Contact App</h1>
+			<h1><i class="fa fa-check-square-o"></i> {{head.appTitle}}</h1>
 		</div>	
 	</div>
-	<div ng-app="todoApp" ng-controller="ContactController as ctrl">
+	<div  ng-controller="ContactController as ctrl">
 		<div class="container">
 				
 				<div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<label><i class="fa fa-phone"></i> Contact List</label>
-						<ul>
-							<li ng-repeat="contact in ctrl.contacts" ng-click="ctrl.selectContact($index)">{{contact.name.first + " "+ contact.name.last}}</li>
+						<ul class="register_contact">
+							<li ng-repeat="contact in ctrl.contacts" ng-click="ctrl.selectContact($index)">
+								<i class="fa fa-user"></i>
+								{{contact.name.first + " "+ contact.name.last}}
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12" ng-show="ctrl.state">
@@ -42,7 +53,7 @@
 							    <button class="delete pull-left" ng-click="ctrl.closeDetail()"><i class="fa fa-times"></i> Close</button>
 							  </div>
 							  <div class="media-right">
-							    <img ng-src="{{ctrl.selectedContact.picture.thumbnail}}" class="media-object" style="width:60px">
+							    <img ng-src="{{ctrl.selectedContact.picture.medium}}" class="media-object" style="width:120px">
 							  </div>
 						</div>
 					</div>	
@@ -50,13 +61,13 @@
 		</div>
 	</div>
 	<div class="footer">
-		<div class="container">	
+		<div class="container" ng-controller="FooterController as foot">	
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					<h1><i class="fa fa-phone"></i> Contact App</h1>
+					<h1><i class="fa fa-phone"></i> {{foot.appTitle}}</h1>
 					<hr>
 					<p>
-						Contact App is a webtool which let you<br/> to manage your contact <br/>into a register
+						{{foot.textFooter}}
 					</p>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12">
